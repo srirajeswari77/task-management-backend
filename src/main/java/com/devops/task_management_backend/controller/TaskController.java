@@ -11,7 +11,7 @@ import java.util.concurrent.atomic.AtomicLong;
 
 @RestController
 @RequestMapping("/api/tasks")
-@CrossOrigin(origins = "http://localhost:5173")
+@CrossOrigin(origins = {"http://localhost:5173", "http://localhost:3000"})
 public class TaskController {
 
     private final List<Task> tasks = new ArrayList<>();
