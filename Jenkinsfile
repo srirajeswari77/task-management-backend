@@ -13,8 +13,11 @@ pipeline {
             steps {
                 sh '''
                     docker run --rm \
-                      -v "$WORKSPACE:/workspace" \
-                      -w /workspace \
+                      --user 1000:1000 \
+                      -e HOME=/tmp \
+                      -e MAVEN_CONFIG=/tmp/.m2 \
+                      -v jenkins_home:/jenkins_home \
+                      -w "/jenkins_home/workspace/${JOB_NAME}" \
                       maven:3.9.11-eclipse-temurin-21 \
                       mvn clean test package
                 '''
